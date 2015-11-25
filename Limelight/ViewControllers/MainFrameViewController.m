@@ -543,8 +543,9 @@ static NSMutableSet* hostList;
     
     self.collectionView.delaysContentTouches = NO;
     self.collectionView.allowsMultipleSelection = NO;
+#ifndef TARGET_OS_TV
     self.collectionView.multipleTouchEnabled = NO;
-    
+#endif
     [self retrieveSavedHosts];
     _discMan = [[DiscoveryManager alloc] initWithHosts:[hostList allObjects] andCallback:self];
     
@@ -755,8 +756,9 @@ static NSMutableSet* hostList;
     
     cell.layer.borderColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3f] CGColor];
     cell.layer.borderWidth = 1;
+#ifndef TARGET_OS_TV
     cell.exclusiveTouch = YES;
-
+#endif
     return cell;
 }
 

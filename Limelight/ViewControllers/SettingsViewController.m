@@ -42,8 +42,10 @@ static NSString* bitrateFormat = @"Bitrate: %.1f Mbps";
     [self.framerateSelector setSelectedSegmentIndex:framerate];
     [self.framerateSelector addTarget:self action:@selector(newResolutionFpsChosen) forControlEvents:UIControlEventValueChanged];
     [self.onscreenControlSelector setSelectedSegmentIndex:onscreenControls];
+#ifndef TARGET_OS_TV
     [self.bitrateSlider setValue:(_bitrate / BITRATE_INTERVAL) animated:YES];
     [self.bitrateSlider addTarget:self action:@selector(bitrateSliderMoved) forControlEvents:UIControlEventValueChanged];
+#endif
     [self updateBitrateText];
 }
 
@@ -66,13 +68,16 @@ static NSString* bitrateFormat = @"Bitrate: %.1f Mbps";
     }
     
     _bitrate = defaultBitrate;
+#ifndef TARGET_OS_TV
     [self.bitrateSlider setValue:defaultBitrate / BITRATE_INTERVAL animated:YES];
-    
+#endif
     [self updateBitrateText];
 }
 
 - (void) bitrateSliderMoved {
+#ifndef TARGET_OS_TV
     _bitrate = BITRATE_INTERVAL * (int)self.bitrateSlider.value;
+#endif
     [self updateBitrateText];
 }
 
