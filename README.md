@@ -3,5 +3,5 @@ Unofficial port of Moonlight for tvOS
 Uses private API
 
 TODO:
-- compile libssl, libcrypto, libopus for tvOS
+- update build scripts to build all architectures including tvOS
 - create storyboard for Apple TV
